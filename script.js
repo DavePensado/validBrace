@@ -69,9 +69,9 @@ function validBrace(str) {
   return stack.size === 0;
 }
 
-let input1 = '({[]}([]))'; // true
+let input1 = '({[]}<([])>)'; // true
 let input2 = '([)]{[()]}'; // false
-let input3 = ')}]('; // false
+let input3 = ')}](>'; // false
 let input4 = '({[2+2]}([a+2]))'; //true
 let input5 = '2*([2+2]+([a+2]))'; //true
 
