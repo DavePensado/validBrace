@@ -42,3 +42,41 @@ class Stack {
       return this[`_${this.size - 1}`];
   }
 }
+
+function validBrace(str) {
+  let stack = new Stack(200);
+  let open = ['(', '[', '{', '<'];
+  let brackets = {
+    ')': '(',
+    ']': '[',
+    '}': '{',
+    '>': '<'
+  };
+
+  for(let item of str) {
+    if(item in brackets) {
+      if(brackets[item] !== stack.pick()) {
+        return false
+      } else {
+        stack.pop();
+      }
+      
+    } else if(open.includes(item)){
+      stack.push(item)
+    }
+  }
+
+  return stack.size === 0;
+}
+
+let input1 = '({[]}([]))'; // true
+let input2 = '([)]{[()]}'; // false
+let input3 = ')}]('; // false
+let input4 = '({[2+2]}([a+2]))'; //true
+let input5 = '2*([2+2]+([a+2]))'; //true
+
+console.log(validBrace(input1))
+console.log(validBrace(input2))
+console.log(validBrace(input3))
+console.log(validBrace(input4))
+console.log(validBrace(input5))
